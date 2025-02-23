@@ -34,6 +34,9 @@ services:
       - .env
     networks:
       - remnawave-network
+    depends_on:
+      remnawave-db:
+        condition: service_healthy
 
   remnawave-cloudflared:
     container_name: remnawave-cloudflared
@@ -47,7 +50,6 @@ services:
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
     depends_on:
       - remnawave
-      - remnawave-db
 
 networks:
   remnawave-network:

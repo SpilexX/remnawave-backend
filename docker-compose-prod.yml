@@ -34,6 +34,9 @@ services:
       - .env
     networks:
       - remnawave-network
+    depends_on:
+      remnawave-db:
+        condition: service_healthy
 
 networks:
   remnawave-network:
